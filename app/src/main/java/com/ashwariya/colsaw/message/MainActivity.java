@@ -1,11 +1,13 @@
 package com.ashwariya.colsaw.message;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
         switch(v.getId()){
             case R.id.message:
+                if(Message.getText().toString().trim().length() > 0 && Number.getText().toString().trim().length() > 0){
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(Message.getText().toString(), Number.getText().toString(), null)));
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Feilds cannot be empty", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.close:
+                Message.setText("");
+                
                 break;
 
             case R.id.phone:

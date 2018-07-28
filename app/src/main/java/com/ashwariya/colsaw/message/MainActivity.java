@@ -26,27 +26,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onclickbutton(View v) {
-        EditText Message = (EditText) findViewById(R.id.message);
+        EditText Message = (EditText) findViewById(R.id.Message);
         EditText Number = (EditText) findViewById(R.id.Number);
-        ImageButton message = (ImageButton) findViewById(R.id.message);
-        ImageButton close = (ImageButton) findViewById(R.id.close);
-        ImageButton phone = (ImageButton) findViewById(R.id.phone);
-        ImageButton Browser = (ImageButton) findViewById(R.id.Browser);
-        ImageButton nextpage = (ImageButton) findViewById(R.id.nextpage);
 
         switch (v.getId()) {
             case R.id.message:
                 Toast.makeText(this, "HErer",Toast.LENGTH_SHORT).show();
                 if (ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.SEND_SMS}, 1);
-                    Snackbar mySnackbar1 = Snackbar.make(findViewById(R.id.parent),
-                            "Sorry! I needed permissions", Snackbar.LENGTH_LONG);
-                    mySnackbar1.show();
                 } else {
                     if(Number.getText().toString().isEmpty() || Message.getText().toString().isEmpty()){
-                        Snackbar mySnackbar = Snackbar.make(findViewById(R.id.parent),
-                                "Sorry! Can't send this without number and message", Snackbar.LENGTH_LONG);
-                        mySnackbar.show();
+                        // skipped TODO
                     }else {
                         SmsManager smsManager = SmsManager.getDefault();
                         smsManager.sendTextMessage(Number.getText().toString(), null, Message.getText().toString(), null, null);
